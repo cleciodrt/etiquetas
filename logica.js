@@ -1,20 +1,11 @@
 window.onload = () => {
-  
-  const nDias = ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'];
+
+  let dados;
   const nMeses = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
-  const noDia = new Date().getDay(), noMes = new Date().getDate(), oMes = new Date().getMonth();
- 
-  if (localStorage.getItem('dados') !== null) {
-    
-    dados = JSON.parse(localStorage.getItem('dados'));
-    if (dados.fazer !== 0) {
-      meta.value = Number(dados.fazer);
-    } else {
-      meta.value = '';
-    }
-    
-  } else {
-    
+  const oMes = new Date().getMonth();
+
+  if (localStorage.getItem('dados') === null) {
+
     dados = {
       mes: nMeses[oMes],
       fazer: 0,
@@ -22,66 +13,62 @@ window.onload = () => {
     };
 
     localStorage.setItem('dados', JSON.stringify(dados));
+    
+  } else {
+
+    dados = JSON.parse(localStorage.getItem('dados'));
 
   }
-
-  dia.innerText = `${ nDias[noDia] } ${ noMes }`;
   
-  tipo.onclick = () => {
-    metricas.classList.toggle('sumir');
-    resultado.classList.toggle('resultado');
-  };
-  
-  calcular.onclick = () => {
+  for (let le = 0; le < dados.gramatura.length; le++) {
 
-    var v = naousar.checked ? 0 : 8;
-    var b = rolo.value, m = meta.value, r = restante.value;
-    var sobra = m - r - v, fazer = b - sobra, marcar = sobra * 10;
-
-    if (b != '' && m != '' && r != '') {
-        
-      metricas.classList.toggle('sumir');
-      resultado.classList.toggle('resultado');
-
-      ficara.innerText = `${ fazer }g`;
-      fazendo.innerText = `${ marcar }p`;
-
-      if (localStorage.getItem('dados') !== null) {
-
-        var presente = 0;
-        
-        dados.gramatura.map((valor, indice) => {
-          const prosseguir = dados.gramatura[indice][0] ===
-           `${ nDias[noDia] } ${ noMes }` ? presente++ : presente;
-        });
-          
-        if (presente === 0) {
-          dados.gramatura.push([`${ nDias[noDia] } ${ noMes }`, m]);
-        } else {
-
-          dados.gramatura.map((valor, indice) => {
-
-            console.log();
-            if (`${ nDias[noDia] } ${ noMes }` === dados.gramatura[indice][0]) {
-              dados.gramatura[indice][1] = m;
-            } 
-            
-          });
-          
-          // dados.gramatura[presente] = [`${ nDias[noDia] } ${ noMes }`, m];
-        }
-        
-        localStorage.setItem('dados', JSON.stringify(dados));
-      };
-    
-    } else {
-      calcular.value = 'Preencha todos os campos';
-      
-      setTimeout(() => {
-        calcular.value = 'Calcular';
-      }, 2000);
+    if (le === 0) {
+      mes.innerText = `${ dados.mes }`;
     }
 
+    lista.innerHTML += 
+    `
+      <a href='peso/peso.html'>
+        <li class="gramatura">
+          <span class="dia">--</span>
+          <span class="grama">--</span>
+          <span>
+            <i class="fa-solid fa-circle-right"></i>
+          </span>
+        </li>
+      </a>
+    `;
+    
+    document.querySelectorAll('.dia')[le].innerText = dados.gramatura[le][0];
+    document.querySelectorAll('.grama')[le].innerText = `${ dados.gramatura[le][1] }g`;
+
   };
+
+  for (var i = 0; i < dados.gramatura.length; i++) {
+    
+    document.querySelectorAll('.gramatura')[i].onclick = (elemento) => {
+
+      const captura = String(elemento.target.children[1].innerText);
+
+      if (captura.length == 4) {
+        var valor = captura.slice(0, 3)
+      } else if (captura.length == 3) {
+        var valor = captura.slice(0, 2)
+      } else {
+        var valor = captura.slice(0, 1)
+      };
+
+      dados.fazer = valor;
+
+      localStorage.setItem('dados', JSON.stringify(dados));
+
+    };
+    
+  }
+
+  novo.onclick = () => {
+    dados.fazer = 0;
+    localStorage.setItem('dados', JSON.stringify(dados));
+  }
 
 }
