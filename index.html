@@ -1,48 +1,39 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="en">
   <head>
     <meta charset="UTF-8">
-    <title>Ettiq | Simplifique a rotina</title>
-    <link rel="stylesheet" href="./estilo.css" />
+    <title>Ettiq | Início</title>
+    <link rel="stylesheet" href="./estilo.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="https://cdn.icon-icons.com/icons2/317/PNG/512/tag-icon_34341.png" type="image/ico">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   </head>
   <body>
-    
-    <div id="tudo">
-      <div id="bloco">
-        <div id="res">
-          <label id="resultado">preencha os campos</label>
-        </div>
-        <div id="forma">
-          <form>
-            <input type="number" id="reb" class="aumenta" placeholder="Rolo em branco (g)" maxlength="3" /> <br/>
-            <input type="number" id="m" placeholder="Meta (g)" maxlength="2" />
-            <input type="number" id="rr" placeholder="Restante (g)" maxlength="2" />
-            <select id="rolo">
-                <option>0</option>
-                <option>4</option>
-                <option>5</option>
-                <option>6</option>
-                <option>7</option>
-                <option>8</option>
-                <option9></option>
-            </select>
-          </form>
-        </div>
-      </div>
-      <!-- =Mensagens -->
-      <div id="mensagens">
-          <div id="marcar">
-            <div class="explica">
-              <i class="fa-solid fa-calendar-day"></i>
-              <span>Troque a data do Carimbo</span>
-            </div>
-            <label id="diaSemana"></label>
-          </div>
-      </div>
-    </div>
 
+    <main data-aos="zoom" data-aos-duration="700">
+      <header class="">
+        <h1 id="foco">Ettiq</h1>
+        <p>Simplifique a rotina</p>
+      </header>
+
+      <ul id="historico">
+        <h2 id="mes"></h2>
+        <div id="lista"></div>
+      </ul>
+
+      <div id="calcular">
+        <a href="./peso/peso.html">
+          <button id="novo">+ Nova Marcação</button>
+        </a>
+      </div>
+    </main>
+    
+    <script>AOS.init();</script>
     <script src="./logica.js"></script>
+
   </body>
 </html>

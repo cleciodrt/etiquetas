@@ -1,30 +1,74 @@
 window.onload = () => {
-  const diaSeguinte = new Date().getDate() + 1;
-  //const data = document.querySelector("#data");
-  const dias = ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'];
-  const data = new Date(), nomeDia = data.getDay() + 1, dia = data.getDate();
+
+  let dados;
+  const nMeses = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
+  const oMes = new Date().getMonth();
+
+  if (localStorage.getItem('dados') === null) {
+
+    dados = {
+      mes: nMeses[oMes],
+      fazer: 0,
+      gramatura: []
+    };
+
+    localStorage.setItem('dados', JSON.stringify(dados));
+    
+  } else {
+
+    dados = JSON.parse(localStorage.getItem('dados'));
+
+  }
   
-  /* Formulas ->
-      m = p - v - r ( meta = papeis  - vazio - restante)
-      s = b - m ( sobra = branco - meta )
-      
-      var fazer = p - v - r, sobra = b - fazer;
-  */
+  for (let le = 0; le < dados.gramatura.length; le++) {
 
-  // b: Rolo em Branco, v: Rolo Vazio, p: Meta, r: Restante
-  rolo.onchange = reb.onkeyup = m.onkeyup = rr.onkeyup = () => {
-      b = reb.value, v = rolo.value, p = m.value, r = rr.value;
-      fazer = p - v - r, sobra = b - fazer, marcar = fazer * 10;
+    if (le === 0) {
+      mes.innerText = `${ dados.mes }`;
+    }
 
-      if (b != '' && p != '' && r != '') {
-          resultado.innerHTML = `Deixar: ${sobra}g <br /> Fazer: ${marcar}p`
-      }
+    lista.innerHTML += 
+    `
+      <a href='peso/peso.html'>
+        <li class="gramatura">
+          <span class="dia">--</span>
+          <span class="grama">--</span>
+          <span>
+            <i class="fa-solid fa-circle-right"></i>
+          </span>
+        </li>
+      </a>
+    `;
+    
+    document.querySelectorAll('.dia')[le].innerText = dados.gramatura[le][0];
+    document.querySelectorAll('.grama')[le].innerText = `${ dados.gramatura[le][1] }g`;
+
+  };
+
+  for (var i = 0; i < dados.gramatura.length; i++) {
+    
+    document.querySelectorAll('.gramatura')[i].onclick = (elemento) => {
+
+      const captura = String(elemento.target.children[1].innerText);
+
+      if (captura.length == 4) {
+        var valor = captura.slice(0, 3)
+      } else if (captura.length == 3) {
+        var valor = captura.slice(0, 2)
+      } else {
+        var valor = captura.slice(0, 1)
+      };
+
+      dados.fazer = valor;
+
+      localStorage.setItem('dados', JSON.stringify(dados));
+
+    };
+    
   }
 
-  if (nomeDia == 1) {
-      diaSemana.innerText += ` ${ dias[nomeDia] } ${ new Date().getDate() + 3 }`;
-  } else {
-      diaSemana.innerText += ` ${ dias[nomeDia] } ${ dia + 1 }`;
+  novo.onclick = () => {
+    dados.fazer = 0;
+    localStorage.setItem('dados', JSON.stringify(dados));
   }
 
 }
