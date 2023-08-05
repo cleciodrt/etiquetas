@@ -28,7 +28,7 @@ window.onload = () => {
 
     lista.innerHTML += 
     `
-      <a href='peso/peso.html'>
+      <a href='peso.html'>
         <li class="gramatura">
           <span class="dia">--</span>
           <span class="grama">--</span>
