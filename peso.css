@@ -1,0 +1,243 @@
+@import url("https://fonts.googleapis.com/css2?family=Lexend+Deca&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@900&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  outline: none;
+  text-decoration: none;
+  box-sizing: border-box;
+  font-family: "Lexend Deca", 'Poppins', sans-serif;
+}
+
+ul {
+  list-style: none;
+}
+
+h2 {
+  margin: 10px 0;
+  cursor: default;
+  font-size: 25px;
+  color: #ffffff;
+  font-family: 'Poppins';
+}
+
+/* =Body
+-----------------------------------------------------------------------------------------------------------------------------*/
+
+body {
+  margin: 0 auto;
+  max-width: 650px;
+  position: relative;
+  background: #232428;
+}
+
+main {
+  gap: 30px;
+  width: 100%;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* =Cabeçalho
+-----------------------------------------------------------------------------------------------------------------------------*/
+
+header {
+  padding: 40px 0;
+}
+
+h1 {
+  font-size: 40px;
+  color: #27a992;
+  text-align: center;
+  font-family: 'Poppins';
+  text-transform: uppercase;
+}
+
+p {
+  color: #cef0ea;
+  text-align: center;
+  font-family: 'Poppins';
+}
+
+/* =Aviso
+-----------------------------------------------------------------------------------------------------------------------------*/
+
+#aviso {
+  gap: 10px;
+  height: 50px;
+  display: flex;
+  font-weight: 900;
+  border-radius: 10px;
+  align-items: center;
+  background: #febf30;
+  justify-content: center;
+}
+
+/* =Mostruario
+-----------------------------------------------------------------------------------------------------------------------------*/
+
+#mostruario {
+  gap: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* =Formulario
+-----------------------------------------------------------------------------------------------------------------------------*/
+
+#formulario {
+  width: 100%;
+  min-height: 50px;
+}
+
+#metricas {
+  border-radius: 5px;
+}
+
+#tipo {
+  height: 50px;
+  display: none;
+  padding: 0 20px;
+  cursor: pointer;
+  font-weight: 900;
+  line-height: 50px;
+  position: relative;
+}
+
+form {
+  gap: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+input {
+  width: 100%;
+  border: none;
+  height: 80px;
+  background: #cef0ea;
+}
+input[type=number] {
+  padding: 0 30px;
+  font-size: 18px;
+  font-family: 'Poppins';
+}
+
+input[type=radio] {
+  width: 20px;
+  height: 20px;
+  margin: 0 20px;
+}
+
+input[type=button] {
+  height: 60px;
+  margin: 10px 0;
+  font-size: 18px;
+  cursor: pointer;
+  color: #ffffff;
+  border-radius: 5px;
+  font-weight: bolder;
+  background: #27a992;
+  text-transform: uppercase;
+  font-family: 'Lexend Deca';
+}
+
+#base {
+  gap: 10px;
+  display: flex;
+  padding: 15px 0;
+  flex-direction: column;
+}
+
+.pergunta span {
+  font-size: 22px;
+  color: #ffffff;
+}
+
+.botoes {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.botoes label {
+  color: #cef0ea;
+  font-size: 18px;
+}
+
+.sumir {
+  background: #27a992;
+}
+
+.sumir #tipo {
+  display: block;
+}
+
+.sumir form {
+  display: none;
+}
+
+/* =Resultado
+-----------------------------------------------------------------------------------------------------------------------------*/
+
+#resultado {
+  display: none;
+}
+
+.resultado {
+  order: -1;
+  display: block !important;
+}
+
+ul {
+  margin: 0 15px;
+  cursor: default;
+}
+
+ul li {
+  height: 50px;
+  display: flex;
+  margin: 10px 0;
+  justify-content: space-between;
+}
+
+ul span {
+  width: 50%;
+  font-size: 20px;
+  color: #ffffff;
+  line-height: 50px;
+  text-align: center;
+}
+
+ul span:nth-child(1) {
+  background: #27a992;
+  border-radius: 5px 0 0 5px;
+}
+
+ul span:nth-child(2) {
+  color: #000000;
+  background: #cef0ea;
+  border-radius: 0 5px 5px 0;
+  box-shadow: inset 1px 0 5px -3px #000;
+}
+
+@media screen and (min-width: 650px) {
+
+  #aviso,
+  ul li {
+    height: 70px;
+    font-size: 20px;
+  }
+
+  #tipo {
+    height: 70px;
+    font-size: 18px;
+    line-height: 70px;
+  }
+
+  ul span {
+    line-height: 70px;
+  }
+
+}
