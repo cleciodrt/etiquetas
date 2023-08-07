@@ -22,6 +22,19 @@ h2 {
   font-family: 'Poppins';
 }
 
+/* =Animações
+-----------------------------------------------------------------------------------------------------------------------------*/
+
+@keyframes piscandoLento {
+  0% {
+    opacity: 1;
+  } 50% {
+    opacity: 0.5;
+  } 100% {
+    opacity: 1;
+  }
+}
+
 /* =Body
 -----------------------------------------------------------------------------------------------------------------------------*/
 
@@ -45,6 +58,11 @@ main {
 
 header {
   padding: 40px 0;
+}
+
+header a {
+  display: flex;
+  flex-direction: column;
 }
 
 h1 {
@@ -73,6 +91,9 @@ p {
   align-items: center;
   background: #febf30;
   justify-content: center;
+
+  display: none;
+  animation: piscandoLento 2s ease infinite;
 }
 
 /* =Mostruario
@@ -82,6 +103,16 @@ p {
   gap: 20px;
   display: flex;
   flex-direction: column;
+}
+
+#mostruario h2 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+#mostruario h2 i {
+  font-size: 22px;
 }
 
 /* =Formulario
@@ -118,6 +149,7 @@ input {
   height: 80px;
   background: #cef0ea;
 }
+
 input[type=number] {
   padding: 0 30px;
   font-size: 18px;
@@ -127,7 +159,7 @@ input[type=number] {
 input[type=radio] {
   width: 20px;
   height: 20px;
-  margin: 0 20px;
+  margin: 0 0px;
 }
 
 input[type=button] {
@@ -141,6 +173,12 @@ input[type=button] {
   background: #27a992;
   text-transform: uppercase;
   font-family: 'Lexend Deca';
+  transition: all 700ms ease;
+}
+
+.faltaAlgo {
+  color: #232428 !important;
+  background: #febf30 !important;
 }
 
 #base {
@@ -151,14 +189,31 @@ input[type=button] {
 }
 
 .pergunta span {
+  display: block;
   font-size: 22px;
   color: #ffffff;
+  text-align: center;
 }
 
 .botoes {
+  gap: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.botoes div {
+  gap: 5px;
+  display: flex;
+  align-items: center;
+}
+
+.botoes div:nth-child(1)::after {
+  width: 3px;
+  content: '';
+  height: 23px;
+  translate: 7px 0;
+  background: gray;
 }
 
 .botoes label {
@@ -187,26 +242,30 @@ input[type=button] {
 
 .resultado {
   order: -1;
-  display: block !important;
+  flex-direction: column;
+  display: flex !important;
 }
 
 ul {
-  margin: 0 15px;
+  margin: 0 40px;
   cursor: default;
 }
 
 ul li {
-  height: 50px;
+  height: 65px;
   display: flex;
   margin: 10px 0;
+  overflow: hidden;
+  line-height: 65px;
   justify-content: space-between;
+  border-radius: 5px 10px 10px 5px;
+  border-right: 5px solid #27a992;
 }
 
 ul span {
   width: 50%;
   font-size: 20px;
   color: #ffffff;
-  line-height: 50px;
   text-align: center;
 }
 
@@ -218,7 +277,7 @@ ul span:nth-child(1) {
 ul span:nth-child(2) {
   color: #000000;
   background: #cef0ea;
-  border-radius: 0 5px 5px 0;
+  /* border-radius: 0 5px 5px 0; */
   box-shadow: inset 1px 0 5px -3px #000;
 }
 

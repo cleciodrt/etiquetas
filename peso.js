@@ -2,8 +2,11 @@ window.onload = () => {
   
   const nDias = ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'];
   const nMeses = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
-  const noDia = new Date().getDay(), noMes = new Date().getDate(), oMes = new Date().getMonth();
- 
+
+  const noDia = new Date().getDay(), noMes = new Date().getDate();
+  const oMes = new Date().getMonth(), oAno = new Date().getFullYear();
+  const ultimoDia = new Date(oAno, oMes, 0).getDate();
+  
   if (localStorage.getItem('dados') !== null) {
     
     dados = JSON.parse(localStorage.getItem('dados'));
@@ -25,11 +28,31 @@ window.onload = () => {
 
   }
 
-  dia.innerText = `${ nDias[noDia] } ${ noMes }`;
+  if (noDia < 6) {
+    if (ultimoDia === noMes) {
+      dia.innerText = `${ nDias[noDia + 1] } ${ 0 + 1 }`;
+      console.log(1)
+    } else {
+      dia.innerText = `${ nDias[noDia] } ${ noMes + 1 }`;
+      console.log(2)
+    }
+  } else {
+    if (ultimoDia === noMes) { // ------------------- FALTA RESOLVER! O ULTIMO DIA DO MES E DA SEMANA
+      dia.innerText = `${ nDias[2] } ${ 3 }`;
+      console.log(3)
+    } else {
+      dia.innerText = `${ nDias[2] } ${ noMes + 3 }`;
+      console.log(4)
+    }
+  }
+
+  console.log(nMeses[oMes]);
   
   tipo.onclick = () => {
     metricas.classList.toggle('sumir');
     resultado.classList.toggle('resultado');
+    aviso.style.display = 'none';
+
   };
   
   calcular.onclick = () => {
@@ -42,6 +65,7 @@ window.onload = () => {
         
       metricas.classList.toggle('sumir');
       resultado.classList.toggle('resultado');
+      aviso.style.display = 'flex';
 
       ficara.innerText = `${ fazer }g`;
       fazendo.innerText = `${ marcar }p`;
@@ -55,7 +79,7 @@ window.onload = () => {
            `${ nDias[noDia] } ${ noMes }` ? presente++ : presente;
         });
           
-        if (presente === 0) {
+        if (presente === 0 && (dados.gramatura).lenght < 6) {
           dados.gramatura.push([`${ nDias[noDia] } ${ noMes }`, m]);
         } else {
 
@@ -68,7 +92,6 @@ window.onload = () => {
             
           });
           
-          // dados.gramatura[presente] = [`${ nDias[noDia] } ${ noMes }`, m];
         }
         
         localStorage.setItem('dados', JSON.stringify(dados));
@@ -76,9 +99,11 @@ window.onload = () => {
     
     } else {
       calcular.value = 'Preencha todos os campos';
+      calcular.classList.toggle('faltaAlgo');
       
       setTimeout(() => {
         calcular.value = 'Calcular';
+        calcular.classList.toggle('faltaAlgo');
       }, 2000);
     }
 

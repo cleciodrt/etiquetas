@@ -20,21 +20,20 @@ window.onload = () => {
 
   }
   
+  var duracaoAnimacao = 600;
   for (let le = 0; le < dados.gramatura.length; le++) {
 
     if (le === 0) {
       mes.innerText = `${ dados.mes }`;
     }
 
+    duracaoAnimacao += 100;
     lista.innerHTML += 
     `
-      <a href='peso.html'>
+      <a href='peso.html' data-aos='fade-up' data-aos-delay='${ duracaoAnimacao }'>
         <li class="gramatura">
           <span class="dia">--</span>
           <span class="grama">--</span>
-          <span>
-            <i class="fa-solid fa-circle-right"></i>
-          </span>
         </li>
       </a>
     `;
