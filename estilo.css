@@ -70,8 +70,8 @@ h2 {
 #lista {
   gap: 10px;
   width: 90%;
+  height: auto;
   display: flex;
-  height: 480px;
   overflow: auto;
   align-items: center;
   border-radius: 30px;
