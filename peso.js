@@ -79,7 +79,7 @@ window.onload = () => {
            `${ nDias[noDia] } ${ noMes }` ? presente++ : presente;
         });
           
-        if (presente === 0 && (dados.gramatura).lenght < 6) {
+        if (presente === 0) {
           dados.gramatura.push([`${ nDias[noDia] } ${ noMes }`, m]);
         } else {
 
