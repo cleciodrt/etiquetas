@@ -14,24 +14,18 @@ ul {
   list-style: none;
 }
 
-h2 {
-  margin: 10px 0;
-  cursor: default;
-  font-size: 25px;
-  color: #ffffff;
-  font-family: 'Poppins';
-}
-
 /* =Animações
 -----------------------------------------------------------------------------------------------------------------------------*/
 
 @keyframes piscandoLento {
   0% {
-    opacity: 1;
-  } 50% {
     opacity: 0.5;
-  } 100% {
+  } 30% {
     opacity: 1;
+  } 70% {
+    opacity: 1;
+  } 100% {
+    opacity: 0.5;
   }
 }
 
@@ -51,6 +45,14 @@ main {
   padding: 15px;
   display: flex;
   flex-direction: column;
+}
+
+h2 {
+  margin: 10px 0;
+  cursor: default;
+  font-size: 25px;
+  color: #ffffff;
+  font-family: 'Poppins';
 }
 
 /* =Cabeçalho
@@ -77,23 +79,6 @@ p {
   color: #cef0ea;
   text-align: center;
   font-family: 'Poppins';
-}
-
-/* =Aviso
------------------------------------------------------------------------------------------------------------------------------*/
-
-#aviso {
-  gap: 10px;
-  height: 50px;
-  display: flex;
-  font-weight: 900;
-  border-radius: 10px;
-  align-items: center;
-  background: #febf30;
-  justify-content: center;
-
-  display: none;
-  animation: piscandoLento 2s ease infinite;
 }
 
 /* =Mostruario
@@ -246,15 +231,41 @@ input[type=button] {
   display: flex !important;
 }
 
-ul {
+#valores {
   margin: 0 40px;
   cursor: default;
 }
 
-ul li {
+#valores li {
   height: 65px;
   display: flex;
   margin: 10px 0;
+}
+
+.aviso {
+  height: 50px;
+  font-weight: 900;
+  border-radius: 10px;
+  align-items: center;
+  background: #febf30;
+  flex-direction: column;
+  justify-content: center;
+  animation: piscandoLento 2s ease infinite;
+}
+
+.aviso i {
+  font-size: 20px;
+  margin-left: 15px;
+  align-self: flex-start;
+}
+
+.aviso span {
+  font-size: 20px;
+  translate: 0 -10px;
+  font-family: 'Poppins';
+}
+
+.result {
   overflow: hidden;
   line-height: 65px;
   justify-content: space-between;
@@ -262,22 +273,21 @@ ul li {
   border-right: 5px solid #27a992;
 }
 
-ul span {
+.result span {
   width: 50%;
   font-size: 20px;
   color: #ffffff;
   text-align: center;
 }
 
-ul span:nth-child(1) {
+.result span:nth-child(1) {
   background: #27a992;
   border-radius: 5px 0 0 5px;
 }
 
-ul span:nth-child(2) {
+.result span:nth-child(2) {
   color: #000000;
   background: #cef0ea;
-  /* border-radius: 0 5px 5px 0; */
   box-shadow: inset 1px 0 5px -3px #000;
 }
 

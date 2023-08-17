@@ -11,9 +11,9 @@
 }
 
 body {
-  width: 100%;
-  height: 100%;
   padding: 15px;
+  margin: 0 auto;
+  max-width: 650px;
   padding-bottom: 0;
   position: relative;
 }
@@ -24,11 +24,9 @@ ul {
 
 main {
   width: 100%;
-  height: 100%;
   display: flex;
-  margin: 0 auto;
-  max-width: 650px;
   flex-direction: column;
+  justify-content: space-between;
 }
 
 header {
@@ -63,6 +61,7 @@ h2 {
 
 #historico {
   display: flex;
+  overflow: auto;
   align-items: center;
   flex-direction: column;
 }
@@ -72,11 +71,11 @@ h2 {
   width: 90%;
   height: auto;
   display: flex;
-  overflow: auto;
+  overflow: hidden;
   align-items: center;
   border-radius: 30px;
   justify-content: center;
-  flex-direction: column;
+  flex-direction: column-reverse;
 }
 
 #lista a {
@@ -98,15 +97,6 @@ h2 {
   justify-content: space-around;
 }
 
-/* #lista li::after {
-  width: 30px;
-  height: 30px;
-  display: block;
-  content: '\f223';
-  position: relative;
-  font-family: "Font Awesome 6 Free";
-} */
-
 #lista i {
   font-size: 30px;
 }
@@ -120,10 +110,10 @@ h2 {
 }
 
 #calcular {
-  bottom: 0;
   width: 100%;
   padding: 20px;
   display: flex;
+  position: relative;
   align-items: center;
   justify-content: center;
 }
@@ -141,5 +131,11 @@ button {
 @media (max-width: 800px) {
   ul {
     width: 100%;
+  }
+}
+
+@media (max-width: 300px) {
+  button {
+    font-size: 15px;
   }
 }

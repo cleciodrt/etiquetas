@@ -13,37 +13,37 @@ window.onload = () => {
     };
 
     localStorage.setItem('dados', JSON.stringify(dados));
+    calcular.setAttribute('data-aos-delay',`${ 450 }`);
     
   } else {
 
     dados = JSON.parse(localStorage.getItem('dados'));
-
+    
   }
   
-  var duracaoAnimacao = 600;
+  var delayAnimacao = 1100;
   for (let le = 0; le < dados.gramatura.length; le++) {
-
+    
     if (le === 0) {
       mes.innerText = `${ dados.mes }`;
-    }
-
-    duracaoAnimacao += 100;
-    lista.innerHTML += 
-    `
-      <a href='peso.html' data-aos='fade-up' data-aos-delay='${ duracaoAnimacao }'>
-        <li class="gramatura">
-          <span class="dia">--</span>
-          <span class="grama">--</span>
-        </li>
-      </a>
-    `;
+    } 
     
-    document.querySelectorAll('.dia')[le].innerText = dados.gramatura[le][0];
-    document.querySelectorAll('.grama')[le].innerText = `${ dados.gramatura[le][1] }g`;
+    if (document.querySelectorAll('#lista li').length < 5) {
+      delayAnimacao -= 100;
+      lista.innerHTML += 
+      `
+        <a href='peso.html' data-aos='fade-up' data-aos-delay='${ delayAnimacao }'>
+          <li class="gramatura">
+            <span class="dia">${ dados.gramatura[le][0] }</span>
+            <span class="grama">${ dados.gramatura[le][1] }g</span>
+          </li>
+        </a>
+      `;
+    };
 
   };
 
-  for (var i = 0; i < dados.gramatura.length; i++) {
+  for (var i = 0; i < document.querySelectorAll('#lista li').length; i++) {
     
     document.querySelectorAll('.gramatura')[i].onclick = (elemento) => {
 

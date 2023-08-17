@@ -1,11 +1,11 @@
-*::-webkit-scrollbar {
+*:hover::-webkit-scrollbar {
   width: 5px;
 }
 
-*::-webkit-scrollbar-track {
+*:hover::-webkit-scrollbar-track {
   background: transparent;
 }
 
-*::-webkit-scrollbar-thumb {
+*:hover::-webkit-scrollbar-thumb {
   background: #27a992;
 }

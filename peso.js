@@ -31,41 +31,32 @@ window.onload = () => {
   if (noDia < 6) {
     if (ultimoDia === noMes) {
       dia.innerText = `${ nDias[noDia + 1] } ${ 0 + 1 }`;
-      console.log(1)
     } else {
-      dia.innerText = `${ nDias[noDia] } ${ noMes + 1 }`;
-      console.log(2)
+      dia.innerText = `${ nDias[noDia + 1] } ${ noMes + 1 }`;
     }
   } else {
     if (ultimoDia === noMes) { // ------------------- FALTA RESOLVER! O ULTIMO DIA DO MES E DA SEMANA
       dia.innerText = `${ nDias[2] } ${ 3 }`;
-      console.log(3)
     } else {
       dia.innerText = `${ nDias[2] } ${ noMes + 3 }`;
-      console.log(4)
     }
   }
-
-  console.log(nMeses[oMes]);
   
   tipo.onclick = () => {
     metricas.classList.toggle('sumir');
     resultado.classList.toggle('resultado');
-    aviso.style.display = 'none';
-
   };
   
   calcular.onclick = () => {
 
     var v = naousar.checked ? 0 : 8;
     var b = rolo.value, m = meta.value, r = restante.value;
-    var sobra = m - r - v, fazer = b - sobra, marcar = sobra * 10;
+    var sobra = m - r - v, fazer = b - sobra, marcar = parseInt(sobra / 0.1255);
 
     if (b != '' && m != '' && r != '') {
         
       metricas.classList.toggle('sumir');
       resultado.classList.toggle('resultado');
-      aviso.style.display = 'flex';
 
       ficara.innerText = `${ fazer }g`;
       fazendo.innerText = `${ marcar }p`;
@@ -78,19 +69,26 @@ window.onload = () => {
           const prosseguir = dados.gramatura[indice][0] ===
            `${ nDias[noDia] } ${ noMes }` ? presente++ : presente;
         });
-          
-        if (presente === 0) {
+        
+        if (presente === 0 && dados.gramatura.length < 5) {
           dados.gramatura.push([`${ nDias[noDia] } ${ noMes }`, m]);
         } else {
 
+          var modificar = true;
           dados.gramatura.map((valor, indice) => {
 
-            console.log();
             if (`${ nDias[noDia] } ${ noMes }` === dados.gramatura[indice][0]) {
               dados.gramatura[indice][1] = m;
-            } 
+              modificar = false;
+            }
             
           });
+          
+          if (modificar && dados.gramatura.length >= 5) {
+            dados.gramatura.push([`${ nDias[noDia] } ${ noMes }`, m]);
+            dados.gramatura.splice(0, 1);
+            console.log('foi')
+          }
           
         }
         
